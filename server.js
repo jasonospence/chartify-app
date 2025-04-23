@@ -1,3 +1,4 @@
+const { shopifyApi, LATEST_API_VERSION, MemorySessionStorage } = require("@shopify/shopify-api");
 const express = require("express");
 const session = require("express-session");
 const { shopifyApi, LATEST_API_VERSION } = require("@shopify/shopify-api");
