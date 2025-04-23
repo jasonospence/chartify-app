@@ -1,6 +1,6 @@
 const express = require("express");
 const session = require("express-session");
-const { shopifyApi, LATEST_API_VERSION, memorySessionStorage } = require("@shopify/shopify-api");
+const { shopifyApi, LATEST_API_VERSION, MemorySessionStorage } = require("@shopify/shopify-api");
 const dotenv = require("dotenv");
 const path = require("path");
 
@@ -25,7 +25,7 @@ const shopify = shopifyApi({
   hostName: process.env.SHOPIFY_APP_URL.replace(/^https?:\/\//, ""),
   apiVersion: LATEST_API_VERSION,
   isEmbeddedApp: true,
-  sessionStorage: memorySessionStorage(),
+  sessionStorage: new MemorySessionStorage(), // ✅ The correct way for v6+
 });
 
 app.get("/auth", async (req, res) => {
