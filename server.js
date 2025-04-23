@@ -25,7 +25,10 @@ const shopify = shopifyApi({
   hostName: process.env.SHOPIFY_APP_URL.replace(/^https?:\/\//, ""),
   apiVersion: LATEST_API_VERSION,
   isEmbeddedApp: true,
-  sessionStorage: new (require("@shopify/shopify-api").MemorySessionStorage)(),
+  const { shopifyApi, LATEST_API_VERSION, MemorySessionStorage } = require("@shopify/shopify-api");
+
+// ... later inside shopifyApi config
+sessionStorage: new MemorySessionStorage(),
 });
 
 app.get("/auth", async (req, res) => {
