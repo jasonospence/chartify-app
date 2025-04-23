@@ -1,6 +1,6 @@
 const express = require("express");
 const session = require("express-session");
-const { shopifyApi, LATEST_API_VERSION, MemorySessionStorage } = require("@shopify/shopify-api");
+const { shopifyApi, LATEST_API_VERSION, memorySessionStorage } = require("@shopify/shopify-api");
 const dotenv = require("dotenv");
 const path = require("path");
 
@@ -25,7 +25,7 @@ const shopify = shopifyApi({
   hostName: process.env.SHOPIFY_APP_URL.replace(/^https?:\/\//, ""),
   apiVersion: LATEST_API_VERSION,
   isEmbeddedApp: true,
-  sessionStorage: new MemorySessionStorage(),
+  sessionStorage: memorySessionStorage(),
 });
 
 app.get("/auth", async (req, res) => {
@@ -55,4 +55,3 @@ app.get("/", (req, res) => {
 app.listen(PORT, () => {
   console.log(`✅ App running on port ${PORT}`);
 });
-
